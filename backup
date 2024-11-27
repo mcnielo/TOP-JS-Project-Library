@@ -117,14 +117,14 @@ function renderLibrary() {
     removeBtn.classList.add("removeBtn");
     removeBtn.innerHTML = '<span class="removeBtnIcon">×</span>';
 
-    // // Create the read button
-    // const readBtn = document.createElement("button");
-    // if (bookCard.classList.contains("read")) {
-    //   readBtn.textContent = "Unread";
-    // } else {
-    //   readBtn.textContent = "Read";
-    // }
-    // readBtn.classList.add("readBtn");
+    // Create the read button
+    const readBtn = document.createElement("button");
+    if (bookCard.classList.contains("read")) {
+      readBtn.textContent = "Unread";
+    } else {
+      readBtn.textContent = "Read";
+    }
+    readBtn.classList.add("readBtn");
 
     // Create the read toggle (switch) for the book card
     const readToggle = document.createElement("input");
@@ -137,6 +137,15 @@ function renderLibrary() {
     } else {
       readToggle.checked = false; // Mark it as unread
     }
+
+    // Event listener to handle the toggle change
+    readToggle.addEventListener("change", () => {
+      // Update the book's read status based on the toggle state
+      book.read = readToggle.checked;
+
+      // Optionally, you can also update the display text to reflect the new read status
+      read.textContent = `${book.read ? "Read" : "Not Read"}`;
+    });
 
     // Append the toggle to the book card
 
